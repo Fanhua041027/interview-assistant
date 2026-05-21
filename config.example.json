@@ -1,0 +1,23 @@
+{
+  "api_key": "YOUR_API_KEY",
+  "api_url": "https://api.deepseek.com/v1/chat/completions",
+  "kb_path": "C:\\Users\\29838\\knowledge-base\\ai-agent-interview",
+  "window_width": 620,
+  "window_height": 420,
+  "opacity": 0.05,
+  "max_history": 3,
+  "window_x": -1,
+  "window_y": -1,
+  "auto_clear_timeout_ms": 90000,
+  "font_family": "Microsoft YaHei",
+  "font_size": 13,
+  "streaming_enabled": true,
+  "temperature": 0.4,
+  "max_tokens": 1000,
+  "kb_search_top_k": 5,
+  "kb_context_max_chars": 2500,
+  "mode": "实时辅助",
+  "persist_history": false,
+  "model": "deepseek-chat",
+  "scroll_speed_ms": 50
+}
