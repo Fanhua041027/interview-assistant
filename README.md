@@ -16,6 +16,21 @@
 - **全局热键** — Alt+Q 聚焦输入框，无需切换窗口
 - **多轮对话** — 支持上下文延续
 - **一键复制** — 回答自动复制到剪贴板
+- **Ghost Mode 隐身防御** — 防截屏、隐藏任务栏，保护隐私
+
+- **Ghost Mode 隐身防御** — 防截屏（SetWindowDisplayAffinity）、隐藏任务栏，保护面试隐私
+
+## Ghost Mode 隐身防御
+
+Interview Helper 内置 Ghost Mode（隐身防御模式），启动时自动激活：
+
+| 特性 | 实现 |
+|------|------|
+| **防截屏** | `SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE)` — 阻止截图/录屏捕获窗口内容 |
+| **隐藏任务栏** | `WS_EX_TOOLWINDOW` — 窗口不出现在任务栏 |
+| **无边框** | `Qt.FramelessWindowHint` — 不可见的透明悬浮窗 |
+
+启动日志输出 `[GhostMode] 隐身防御模式已激活`。
 
 ## 效果预览
 
@@ -112,7 +127,7 @@ build.bat
 
 ```
 interview-assistant/
-├── main.py                 # 主程序入口
+├── main.py                 # 主程序入口（含 Ghost Mode）
 ├── workers.py              # 后台线程工作器
 ├── build.bat               # PyInstaller 构建脚本
 ├── config.json             # 配置文件（本地，含 API Key）

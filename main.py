@@ -11,6 +11,8 @@ import json
 import re
 import math
 import time
+import ctypes
+from ctypes import wintypes
 from collections import Counter
 
 import requests
@@ -889,6 +891,39 @@ def remove_hotkeys():
 
 
 # ═══════════════════════════════════════════════
+# Ghost Mode — 隐身防御模式
+# ═══════════════════════════════════════════════
+
+def enable_ghost_mode(hwnd):
+    """
+    激活 Ghost Mode:
+    - 防截屏: SetWindowDisplayAffinity(WDA_EXCLUDEFROMCAPTURE)
+    - 隐藏任务栏: WS_EX_TOOLWINDOW
+    - 无边框: 已在 Qt.FramelessWindowHint 中实现
+    - 不设置 WS_EX_NOACTIVATE，否则输入框无法获取焦点
+    """
+    try:
+        # ── Constants ──
+        GWL_EXSTYLE = -20
+        WS_EX_TOOLWINDOW = 0x00000080
+        WDA_EXCLUDEFROMCAPTURE = 0x00000011
+
+        user32 = ctypes.windll.user32
+
+        # SetWindowDisplayAffinity — 防止被截图/录屏捕获
+        user32.SetWindowDisplayAffinity(hwnd, WDA_EXCLUDEFROMCAPTURE)
+
+        # 隐藏任务栏图标（Qt.Tool 已处理，此处强化）
+        current_style = user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
+        new_style = current_style | WS_EX_TOOLWINDOW
+        user32.SetWindowLongW(hwnd, GWL_EXSTYLE, new_style)
+
+        print("[GhostMode] 隐身防御模式已激活 (无边框/防截屏/隐藏任务栏)")
+    except Exception as e:
+        print(f"[GhostMode] 激活失败: {e}")
+
+
+# ═══════════════════════════════════════════════
 # Save config on exit
 # ═══════════════════════════════════════════════
 
@@ -917,6 +952,10 @@ def main():
     api = DeepSeekClient(CFG.get('api_key', ''), CFG.get('api_url', ''))
     overlay = OverlayWindow(kb, api)
     overlay.show()
+
+    # Ghost Mode — 防截屏/防抢焦/隐藏任务栏
+    hwnd = int(overlay.winId())
+    enable_ghost_mode(hwnd)
 
     # Hotkeys
     sig = HotkeySignals()
