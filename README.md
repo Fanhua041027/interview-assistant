@@ -1,4 +1,4 @@
-# 笔试面试助手
+# AI笔试面试辅助助手
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://python.org)
 [![PyQt5](https://img.shields.io/badge/GUI-PyQt5-green)](https://pypi.org/project/PyQt5/)
