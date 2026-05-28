@@ -1,10 +1,10 @@
-# Interview Helper 面试辅助助手
+# 笔试面试助手
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://python.org)
 [![PyQt5](https://img.shields.io/badge/GUI-PyQt5-green)](https://pypi.org/project/PyQt5/)
 [![DeepSeek](https://img.shields.io/badge/LLM-DeepSeek%20Chat-red)](https://deepseek.com)
 
-**Interview Helper** 是一个 Windows 透明悬浮窗面试辅助工具，基于本地知识库检索 + DeepSeek API 实时生成面试回答。适用于线上技术面试场景，提供即时、简洁的答案建议。
+**笔试面试助手** 是一个 Windows 透明悬浮窗辅助工具，基于本地知识库检索 + DeepSeek API 实时生成回答。适用于线上笔试/技术面试场景，提供即时、简洁的答案建议。
 
 ---
 
